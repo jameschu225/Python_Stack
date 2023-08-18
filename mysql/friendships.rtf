@@ -1,0 +1,55 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww17280\viewh13200\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 insert into users (first_name, last_name, created_at) values ('Amy', 'Giver', now()), ('Eli', 'Byers', now()), ('Marky', 'Mark', now()), ('Big', 'Bird', now()),  ('kermit', 'The Frog', now()), ('James', 'Bod', now())\
+\
+insert into friendships (user_id, friend_id, created_at) values (1, 2, now()), (1,4, now()), (1,6,now())\
+\
+insert into friendships (user_id, friend_id, created_at) values (2, 1, now()), (2,3, now()), (2,5,now())\
+\
+insert into friendships (user_id, friend_id, created_at) values (3, 2, now()), (3,5, now())\
+\
+insert into friendships (user_id, friend_id, created_at) values (4, 3, now())\
+\
+insert into friendships (user_id, friend_id, created_at) values (5, 1, now()), (5,1, now())\
+update friendships set friend_id = 6 where id = 11\
+\
+insert into friendships (user_id, friend_id, created_at) values (6, 2, now()), (6,3, now())\
+\
+select users.first_name, users.last_name, users2.first_name as friend_first_name, \
+users2.last_name as friend_last_name from users\
+left join friendships on friendships.user_id = users.id\
+left join users as users2 on users2.id = friendships.friend_id;\
+\
+select users.first_name, users.last_name, users2.first_name as friend_first_name, \
+users2.last_name as friend_last_name from users\
+left join friendships on friendships.user_id = users.id\
+left join users as users2 on users2.id = friendships.friend_id\
+where users.id =1;\
+\
+select users.first_name, users.last_name, count(friendships.friend_id) as num_of_friend from users\
+left join friendships on friendships.user_id = users.id\
+left join users as users2 on users2.id = friendships.friend_id\
+group by users.id;\
+\
+select users.first_name, users.last_name, count(friendships.friend_id)\
+from users left join friendships on friendships.user_id = users.id\
+left join users as users2 on users2.id = friendships.friend_id\
+group by users.id\
+having count(friendships.friend_id) = (select max(num_of_friend) from\
+(select users.id, count(friendships.friend_id) as num_of_friend \
+from users\
+left join friendships on friendships.user_id = users.id\
+left join users as users2 on users2.id = friendships.friend_id\
+group by users.id) as countfrined);\
+\
+select users.first_name, users.last_name, users2.first_name as friend_first_name, \
+users2.last_name as friend_last_name from users\
+left join friendships on friendships.user_id = users.id\
+left join users as users2 on users2.id = friendships.friend_id\
+where users.id =3\
+order by friend_first_name ASC;}
