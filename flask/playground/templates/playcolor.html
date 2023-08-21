@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>playcolor</title>
+    <style>
+        .content{
+            display: flex;
+            flex-direction:row ;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            border-color: black;
+            border-style: solid ;
+        }
+
+        h1 {
+            color: maroon;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <div class="content">
+
+        {% if num == null and color == null%}
+            {% for i  in range (3)%}
+                <div class="box" style="background-color: blue;"></div>
+            {% endfor %}
+        {% elif num != null and color == null%}
+            {% for i  in range (num)%}
+                <div class="box" style="background-color: blue;"></div>
+            {% endfor %}
+        {% elif num != null and color != null%}
+            {% for i  in range (num)%}
+                <div class="box" style="background-color: {{color}};"></div>
+            {% endfor %}
+        {% endif %}
+    </div>
+</body>
+</html>
