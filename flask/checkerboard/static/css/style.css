@@ -1,0 +1,27 @@
+.main {
+    margin: auto;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.box {
+    /* background-color: black; */
+    width: 100px;
+    height: 100px;
+}
+
+.box1 {
+    /* background-color: red; */
+    width: 100px;
+    height: 100px;
+}
+
+h1 {
+    /* color: maroon; */
+    text-align: center;
+    /* background-color: blue; */
+}

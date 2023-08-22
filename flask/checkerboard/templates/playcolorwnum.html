@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{url_for('static', filename='/css/style.css')}}">
+    <title>playcolor</title>
+
+</head>
+
+<body>
+    <h1 style="background-color: {{color1}}; color: {{color2}}">*** Checkerboard **</h1>
+    <div class="main">
+        {% for row in range(y)%}
+        <div class="content">
+            {% if row % 2 != 0 %}
+            {% for column in range(x)%}
+            {% if column % 2 != 0 %}
+            <div class="box" style="background-color: {{color1}};"></div>
+            {% else %}
+            <div class="box1" style="background-color: {{color2}};"></div>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            {% for column in range(x)%}
+            {% if column % 2 != 0 %}
+            <div class="box1" style="background-color: {{color2}};"></div>
+            {% else %}
+            <div class="box" style="background-color: {{color1}};"></div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>
