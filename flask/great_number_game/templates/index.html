@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>great_number_game</title>
+</head>
+
+<body>
+    <h1 style="text-align:center">Welcome to the Great Number Game!</h1>
+    <p style="text-align:center">I am thinking of a number between 1 and 100</p>
+    <p style="text-align:center">Take a guess!</p>
+    <p style="text-align:center">{{session['try']}} attemps</p>
+    
+    {% if session['result'] is none %}
+    <div></div>
+    {% elif session['result'] %}
+    <div style="display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: green; border-color: black; border-style: solid; width: 200px; height: 200px;">
+            <p style="color: aliceblue; font-size: larger;">{{session['clue']}}</p>
+            <form action="/reset">
+                <button type="submit">Play again!</button>
+            </form>
+        </div>
+    </div>
+    {% elif not session['result'] %}
+    <div style="display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; background-color: red; border-style: solid; border-color: black; width: 200px; height: 200px; ">
+            <div style="color: aliceblue; font-size: larger;">{{session['clue']}}</div>
+        </div>
+    </div>
+    {% elif session['result'] == 'draw' %}
+    <div style="display: flex; justify-content: center;">
+        <div style="display: flex; flex-direction: row; justify-content: center; align-items: center; background-color: red; border-style: solid; border-color: black; width: 200px; height: 200px; ">
+            <div style="color: aliceblue; font-size: larger;">{{session['clue']}}</div>
+            <form action="/reset">
+                <button type="submit">Play again!</button>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    <form action="/guest" method="post" style="text-align:center">
+        <input type="number" name="guest">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+
+</html>
