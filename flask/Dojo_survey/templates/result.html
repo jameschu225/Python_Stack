@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+</head>
+<body>
+    <div style="margin-left: 30%; border-style: solid; border-color: black; width:400px; padding: 20px;">
+        <h1 style="text-decoration: underline;">Submitted Info</h1>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <label for="name">Name:</label>
+            <div>{{session['name']}}</div>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <label for="location">Dojo Location::</label>
+            <div>{{session['location']}}</div>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <label for="language">Favorite Language:</label>
+            <div>{{session['language']}}</div>
+        </div>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <label for="Comment">Comment:</label>
+            <div>{{session['comment']}}</div>
+        </div>
+        <form action="/">
+            <button type="submit" style="background-color: cadetblue;">Go Back</button>
+        </form>
+    </div>
+</body>
+</html>
