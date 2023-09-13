@@ -12,18 +12,28 @@
             <h1>Add a New User</h1>
             <a href="/">Home</a>
         </div>
+        <div>
+            {% with messages = get_flashed_messages()%}
+                {% if messages %}
+                    {% for message in messages %}
+                        <p style="color: red;">{{message}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+
         <form action="/create" method="post">
             <div style="display: flex; flex-direction: column;">
                 <label for="fname">First Name:</label>
-                <input type="text" name="fname" id="fname">
+                <input type="text" name="fname" id="fname" value="{{session['fname']}}">
             </div>
             <div style="display: flex; flex-direction: column;">
                 <label for="lname">Last Name:</label>
-                <input type="text" name="lname" id="lname">
+                <input type="text" name="lname" id="lname" value="{{session['lname']}}">
             </div>
             <div style="display: flex; flex-direction: column;">
                 <label for="email">Email:</label>
-                <input type="text" name="email" id="email">
+                <input type="text" name="email" id="email" value="{{session['email']}}">
             </div>
             <div style="margin-top: 20px;">
                 <button class="btn btn-primary" type="submit">Create</button>

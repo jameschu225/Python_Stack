@@ -1,4 +1,8 @@
-from mysqlconnection import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
+import re
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$') 
 
 class Users:
     def __init__(self, data):
@@ -51,3 +55,27 @@ class Users:
         query = "UPDATE USERS SET first_name = %(fname)s, last_name = %(lname)s, email = %(email)s, updated_at = now() WHERE id =%(id)s;"
 
         return connectToMySQL('users_shcema').query_db(query, data)
+    
+    @staticmethod
+    def validation(data, allusers):
+
+        is_valid = True
+
+        if data["fname"] == "":
+            flash(" First Name is required!! ")
+            is_valid = False
+
+        if data["lname"] =="":
+            flash(" Last Name is required!! ")
+            is_valid = False
+        
+        if not EMAIL_REGEX.match(data['email']):
+            flash("Invalid email address!!")
+            is_valid = False
+
+        for user in allusers:
+            if data["email"] == user.email:
+                flash("Email already used!!")
+                is_valid = False
+
+        return is_valid

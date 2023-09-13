@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new_ninja</title>
+</head>
+<body>
+    <h1>New Ninja</h1>
+        <form action="/create_ninjas" method="post" style="display: flex; flex-direction: column;">
+            <div style="display: flex; flex-direction: row; justify-content: left;">
+                <label for="Dojo">Dojo:</label>
+                <select name="did" id="dojo">
+                    {% for dojo in all_dojos%}
+                    <option value="{{dojo['id']}}">{{dojo["name"]}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: left;">
+                <label for="fname">First name:</label>
+                <input type="text" name="fname" id="fname">
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: left;">
+                <label for="lname">Last name:</label>
+                <input type="text" name="lname" id="lname">
+            </div>
+            <div style="display: flex; flex-direction: row; justify-content: left;">
+                <label for="age">Age:</label>
+                <input type="text" name="age" id="age">
+            </div>
+            <div>
+                <button type="submit">Create</button>
+            </div>
+        </form>
+    <a href="/dojos">Home</a> 
+</body>
+</html>
