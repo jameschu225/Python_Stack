@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+</head>
+<body>
+    <h1>Welcome {{user["first_name"]}}</h1>
+    <a href="/recipes/new">+ Create</a>
+    <a href="/logout">Logout</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Under</th>
+                <th>Posted By</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in all_receipt %}
+            <tr>
+                <td>{{row.name}}</td>
+                {% if row.under_30 == 1 %}
+                    <td>Yes</td>
+                {% elif row.under_30 == 0  %}
+                    <td>No</td>
+                {% endif %}
+                <td>{{row.creator.first_name}}</td>
+                {% if row.creator.id == session["login_id"]%}
+                    <td><a href="/recipes/{{row.id}}">view recipe</a> | <a href="/recipes/edit/{{row.id}}">edit</a> | <a href="/recipes/delete/{{row.id}}">delete</a></td>
+                {% else %}
+                    <td><a href="">view recipe</a></td>
+                    {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

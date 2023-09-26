@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one_receipt</title>
+</head>
+<body>
+    <h1>Welcome {{user["first_name"]}}</h1>
+    <a href="/recipes">back to recipes</a>
+    <a href="/logout">Logout</a>
+    <h2>{{receipt["name"]}}</h1>
+    <label for="creator">Post by:</label>
+    <p>{{creator["first_name"]}}</p>
+    <label for="description">Description</label>
+    <p>{{receipt["description"]}}</p>
+    <label for="under_30">Under 30 Minutes?</label>
+    {% if receipt["under_30"] == 1 %}
+    <p>Yes</p>
+        {% elif receipt["under_30"] == 0  %}
+        <p>No</p>
+        {% endif %}    
+    <label for="instructions">Instructions</label>
+    <p>{{receipt["instructions"]}}</p>
+    <label for="date_made">Date Made:</label>
+    <p>{{receipt["date_made"]}}</p>
+</body>
+</html>

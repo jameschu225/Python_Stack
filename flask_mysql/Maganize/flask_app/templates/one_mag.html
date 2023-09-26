@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>one_mag</title>
+</head>
+<body>
+    <a href="/new">Add Magazine</a> | <a href="/user/account">Account</a> | <a href="/logout">Logout</a>
+    <h1>{{mag.title}}</h1>
+    <p>Added By {{creator["first_name"]}} {{creator["last_name"]}}</p>
+    <label for="description">Description:</label>
+    <p style="padding-left: 20px;">{{mag.description}}</p>
+    <label for="subscriber">Subscribers:</label>
+    {% for row in subscriber %}
+    <p style="padding-left: 20px;">{{row["first_name"]}} {{row["last_name"]}}</p>
+    {% endfor %}
+</body>
+</html>

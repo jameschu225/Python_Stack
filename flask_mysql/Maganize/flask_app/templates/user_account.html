@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user_account</title>
+</head>
+<body>
+    <a href="/new">Add Magazine</a> | <a href="/dashboard">Dashboard</a> | <a href="/logout">Logout</a>
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+        <div>
+            <h1>Update User</h1>
+            <div>
+                {% with messages = get_flashed_messages(category_filter=["update_user"])%}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p style="color: red;">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <form action="/update/user" method="post">
+                <input type="hidden" name="id" value={{user.id}}>
+                <div>
+                    <label for="fname">First Name:</label>
+                    <input type="text" name="fname" id="fname" value="{{user['first_name']}}">
+                </div>
+                <div>
+                    <label for="lname">Last Name:</label>
+                    <input type="text" name="lname" id="lname" value="{{user['last_name']}}">
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="text" name="email" id="email" value="{{user['email']}}">
+                </div>
+                <button type="submit">Update</button>
+            </form>
+        </div>
+        <div>
+            <h1>User's Magazines</h1>
+            <!-- <div style="border-style: solid; border-color: black; padding-bottom: 100px;">
+                {% for row in user_mag %}
+                    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                        <a>{{row["title"]}}</a>
+                        <a href="/delete/{{row.id}}">delete</a>
+                    </div>
+                {% endfor %}
+            </div> -->
+            <div style="border-style: solid; border-color: black; padding-bottom: 100px;">
+                {% for row in all_mags_with_count %}
+                    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                        <a>{{row["title"]}}</a>
+                        <a>{{row["subs"]}} subscribers</a>
+                        <a href="/delete/{{row.id}}">delete</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

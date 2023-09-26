@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>new_recipes</title>
+</head>
+<body>
+    <div>
+        {% with messages = get_flashed_messages(category_filter=["create_recipe"])%}
+            {% if messages %}
+                {% for message in messages %}
+                    <p style="color: red;">{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <h1>Add a new Recipe!</h1>
+    <a href="/recipes">back to recipes</a>
+    <a href="/logout">Logout</a>
+    <form action="/recipes/create" method="post">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <label for="description">Description</label>
+        <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        <label for="instructions">Instructions</label>
+        <textarea name="instructions" id="instructions" cols="30" rows="10"></textarea>
+        <label for="date_made">Date Cooked/Made:</label>
+        <input type="date" name="date_made" id="date_made">
+        <label for="under_30">Under 30 Minutes?</label>
+        <input type="radio" name="under_30" id="under_30" value="1">        
+        <label for="under_30_yes">Yes</label>
+        <input type="radio" name="under_30" id="under_30" value="0">        
+        <label for="under_30_no">No</label>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
